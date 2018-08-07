@@ -14,13 +14,13 @@ class MainController
 {
 
     /**
-     * @Route("/")
+     * @Route("/index")
      *
      * @return Response
      */
     public function index()
     {
-        return new Response('some test text', 200);
+        return new Response('<html><body>some test text</body></html>', 200);
     }
 
     /**
@@ -30,6 +30,14 @@ class MainController
      */
     public function test()
     {
-        return new Response('test test page for routes', 200);
+        return new Response('<html><body>test test page for routes</body></html>', 200);
+    }
+
+    /**
+     * @Route("/admin")
+     */
+    public function admin()
+    {
+        return new Response('<html><body>Admin page!</body></html>');
     }
 }
