@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -10,17 +11,16 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @package App\Controller
  */
-class MainController
+class MainController extends AbstractController
 {
-
     /**
-     * @Route("/index")
+     * @Route("/")
      *
      * @return Response
      */
     public function index()
     {
-        return new Response('<html><body>some test text</body></html>', 200);
+        return $this->render('knbase/main.html.twig');
     }
 
     /**
