@@ -45,7 +45,7 @@ class AuthController extends AbstractController
     }
 
     /**
-     * @Route("/login", name="user_login")
+     *
      *
      * @param AuthenticationUtils $authenticationUtils
      * @param Request $request
