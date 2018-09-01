@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 class MainController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/", name="main_page")
      *
      * @return Response
      */
