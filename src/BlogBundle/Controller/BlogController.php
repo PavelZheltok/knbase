@@ -2,6 +2,7 @@
 
 namespace App\BlogBundle\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -10,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @package App\BlogBundle
  */
-class BlogController
+class BlogController extends AbstractController
 {
 
     /**
@@ -20,17 +21,17 @@ class BlogController
      */
     public function index()
     {
-        return new Response('this is blog main page', 200);
+        return $this->render('blog/main.html.twig');
     }
 
     /**
-     * @Route("/test1")
+     * @Route("/post")
      *
      * @return Response
      */
     public function test()
     {
-        return new Response('some blog page', 200);
+        return $this->render('blog/post.html.twig');
     }
 
 

@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
  * Class MainController
@@ -18,9 +20,13 @@ class MainController extends AbstractController
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request, AuthorizationCheckerInterface $checker)
     {
-        return $this->render('knbase/main.html.twig');
+        if ($checker->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->render('blog/main.html.twig');
+        }
+
+        return $this->redirectToRoute('fos_user_security_login');
     }
 
     /**
