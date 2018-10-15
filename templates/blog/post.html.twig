@@ -2,6 +2,8 @@
 
 {% block main %}
 
-    <h1>Post title</h1>
-    <p>post content</p>
+    <h1>{{ post.title }}</h1>
+    {{ post.content }}
+
+    {{ dump(post) }}
 {% endblock %}

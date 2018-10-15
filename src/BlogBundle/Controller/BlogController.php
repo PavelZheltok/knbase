@@ -2,6 +2,9 @@
 
 namespace App\BlogBundle\Controller;
 
+use App\BlogBundle\Ecxeption\PostNotFoundException;
+use App\BlogBundle\Entity\Post;
+use App\BlogBundle\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,13 +28,31 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("/post")
+     * @Route("/posts/{alias}", defaults={"alias"=null})
      *
+     * @param string $alias
      * @return Response
      */
-    public function test()
+    public function posts($alias)
     {
-        return $this->render('blog/post.html.twig');
+        if (empty($alias)) {
+            return $this->index();
+        }
+
+        try {
+            $post = $this
+                ->getDoctrine()
+                ->getRepository(Post::class)
+                ->findOneBy([
+                    'alias' => $alias
+                ]);
+        } catch (PostNotFoundException $e) {
+            die('catched');
+        }
+
+        return $this->render('blog/post.html.twig', [
+            'post' => $post,
+        ]);
     }
 
 

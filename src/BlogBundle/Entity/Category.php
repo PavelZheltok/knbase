@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="categories")
- * @ORM\Entity(repositoryClass="Blog\Repository\CategoryRepository")
+ * @ORM\Entity(repositoryClass="App\BlogBundle\Repository\CategoryRepository")
  */
 class Category
 {
@@ -29,8 +29,8 @@ class Category
     private $alias;
 
     /**
-     * @ORM\OneToOne(targetEntity="Category")
-     * @ORM\JoinColumn(referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\JoinColumn(referencedColumnName="id", nullable=true)
      */
     private $parentCategory;
 }
